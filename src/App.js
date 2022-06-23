@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Carousel from './component/Carousel';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Carousel show={3} infiniteLoop >
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+        <div>
+          <div style={{ padding: 8 }}>
+            <img src="http://via.placeholder.com/300X300" alt="placeholder" style={{ width: '100%' }} />
+          </div>
+        </div>
+      </Carousel>
+    </>
   );
 }
 
