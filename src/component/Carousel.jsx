@@ -67,17 +67,20 @@ const Button = styled.button`
 const Carousel = ({ children, show, infiniteLoop }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
-
+  
+  // ? bool
   const [isRepeating, setIsRepeating] = useState(
     infiniteLoop && children.length > show
   );
   const [transitionEnabled, setTransitionEnabled] = useState(true);
 
+  // ? first dom update
   useEffect(() => {
     setLength(children.length);
     setIsRepeating(infiniteLoop && children.length > show)
   }, [children, show, infiniteLoop]);
 
+  // ? when state have something change 
   useEffect(() => {
     if (isRepeating) {
       if (currentIndex === show || currentIndex === length) {
@@ -86,13 +89,17 @@ const Carousel = ({ children, show, infiniteLoop }) => {
     }
   }, [currentIndex, isRepeating, show, length]);
 
+  // ? handle click next card
   const next = () => {
+    // ? if loop or จำต่ำเเหน่งปัจจุบันที่ น้อยกว่า จำนวนทั้งหมดของ card - กับจำนวนที่เราต้องการจะ show , case !!!!  0 < 9 - 3  ..... true
     if (isRepeating || currentIndex < length - show) {
       setCurrentIndex((prevState) => prevState + 1);
     }
   };
 
+  // ? handle click prev card
   const prev = () => {
+    // ? if loop or จำต่ำเเหน่งปัจจุบันไม่เป็นจำนวนลบ
     if (isRepeating || currentIndex > 0) {
       setCurrentIndex((prevState) => prevState - 1);
     }
@@ -100,9 +107,11 @@ const Carousel = ({ children, show, infiniteLoop }) => {
 
   const handleTransitionEnd = () => {
     if (isRepeating) {
+      // ? when idx at first position
       if (currentIndex === 0) {
         setTransitionEnabled(false);
         setCurrentIndex(length);
+      // ? when idx at last position
       } else if (currentIndex === length + show) {
         setTransitionEnabled(false);
         setCurrentIndex(show);
@@ -113,6 +122,8 @@ const Carousel = ({ children, show, infiniteLoop }) => {
   const renderExtraPrev = () => {
     let output = [];
     for (let index = 0; index < show; index++) {
+      // 6 - 1 - 0 = 5
+      // 6 - 1 - 1 = 4
       output.push(children[length - 1 - index]);
     }
     output.reverse();
@@ -122,6 +133,8 @@ const Carousel = ({ children, show, infiniteLoop }) => {
   const renderExtraNext = () => {
     let output = [];
     for (let index = 0; index < show; index++) {
+      // 0 
+      // 1
       output.push(children[index]);
     }
     return output;
